@@ -23,13 +23,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: glassy-chat-bio-v2/.nvmrc
+          node-version-file: .nvmrc
           cache: npm
-          cache-dependency-path: glassy-chat-bio-v2/package-lock.json
+          cache-dependency-path: package-lock.json
       - name: Install dependencies
-        run: npm ci --prefix glassy-chat-bio-v2
+        run: npm ci
       - name: Build site
-        run: npm run build --prefix glassy-chat-bio-v2
+        run: npm run build
       - name: Select GitHub Actions Pages source
         continue-on-error: true
         env:
@@ -40,7 +40,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: glassy-chat-bio-v2/dist
+          path: dist
 
   deploy:
     environment:
